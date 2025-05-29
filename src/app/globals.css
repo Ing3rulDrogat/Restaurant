@@ -28,6 +28,66 @@
   }
 }
 
+@keyframes topBurgerIcon {
+  from {
+    transform-origin: left center;
+    transform: rotate(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: rotate(45deg) translate(0, -6px);
+  }
+}
+@keyframes middleBurgerIconBar {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: hidden;
+  }
+}
+@keyframes bottomBurgerIconBar {
+  from {
+    transform-origin: left center;
+    transform: rotate(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: rotate(-45deg) translate(0, 6px);
+  }
+}
+
+@keyframes topBurgerIconRe {
+  from {
+    transform-origin: left center;
+    transform: rotate(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: rotate(45deg) translate(0, -6px);
+  }
+}
+@keyframes middleBurgerIconBarRe {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: hidden;
+  }
+}
+@keyframes bottomBurgerIconBarRe {
+  from {
+    transform-origin: left center;
+    transform: rotate(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: rotate(-45deg) translate(0, 6px);
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -41,6 +101,14 @@
   --animate-easeInLeft: easeInLeft 0.5s ease-in-out 0s 1 normal forwards;
   --animate-easeOutLeft: easeOutLeft 0.5s ease-in-out 0s 1 normal forwards;
   --animate-easeInTop: easeInTop 0.5s ease-in-out 0s 1 normal forwards;
+
+  --animate-topBurgerIcon: topBurgerIcon 0.3s ease-in-out 0s 1 normal forwards;
+  --animate-middleBurgerIcon: middleBurgerIconBar 0.3s ease-in 0s 1 normal forwards;
+  --animate-bottomBurgerIcon: bottomBurgerIconBar 0.3s ease-in-out 0s 1 normal forwards;
+
+  --animate-topBurgerIconRe: topBurgerIconRe 0.3s ease-in-out 0s 1 reverse forwards;
+  --animate-middleBurgerIconRe: middleBurgerIconBarRe 0.3s ease-in 0s 1 reverse forwards;
+  --animate-bottomBurgerIconRe: bottomBurgerIconBarRe 0.3s ease-in-out 0s 1 reverse forwards;
 }
 
 @media (prefers-color-scheme: dark) {
