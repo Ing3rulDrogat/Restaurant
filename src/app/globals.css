@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+@keyframes easeInLeft {
+  from {
+    transform: translate(-25vw, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes easeInTop {
+  from {
+    transform: translate(0, -10vh);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes easeOutLeft {
+  from {
+    display: block;
+    transform: translate(0, 0);
+  }
+  to {
+    display: hidden;
+    transform: translate(-25vw, 0);
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,6 +38,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-easeInLeft: easeInLeft 0.5s ease-in-out 0s 1 normal forwards;
+  --animate-easeOutLeft: easeOutLeft 0.5s ease-in-out 0s 1 normal forwards;
+  --animate-easeInTop: easeInTop 0.5s ease-in-out 0s 1 normal forwards;
 }
 
 @media (prefers-color-scheme: dark) {
