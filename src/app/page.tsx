@@ -20,7 +20,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="w-full h-screen" /> {/*Due to absolute positioning, have to have this here to render rest of the page properly */}
             <div className="w-400 h-50 bg-amber-700 mb-50 "></div>
             <div className="w-400 h-50 bg-amber-700 mb-50"></div>
             <div className="w-400 h-50 bg-amber-700"></div>
