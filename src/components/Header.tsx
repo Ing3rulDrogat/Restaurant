@@ -25,23 +25,27 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 w-full h-35 bg-gradient-to-t  from-opacity to-black flex justify-between items-center animate-easeInTop">
+      <div className="sticky top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop">
         <div className="flex w-3/12 h-full items-center">
           <div className=" w-4/12 h-full content-center justify-items-center cursor-pointer" onClick={openSideBar}>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType0}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType1}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType2}`}></div>
           </div>
-          <Link href={"/menu"}>Menu</Link>
+          <Link href={"/menu"} className="hover:text-amber-500 transition-all">
+            Menu
+          </Link>
         </div>
 
         <div className=" w-2/12 h-full flex items-center justify-center">
-          <img src={Logo.src} className="w-auto h-full"></img>
+          <Link href={"/"}>
+            <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
+          </Link>
         </div>
         <div className=" w-3/12 h-full"></div>
       </div>
       {showSideBar == true ? (
-        <div className=" w-full h-screen  sticky top-35">
+        <div className=" w-full h-screen  sticky top-35 ">
           <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer animate-easeInLeft"></div>
         </div>
       ) : (
