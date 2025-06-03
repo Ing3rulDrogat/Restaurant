@@ -88,6 +88,23 @@
   }
 }
 
+@keyframes barRight {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+@keyframes barLeft {
+  from {
+    transform: translate(100%, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -109,6 +126,9 @@
   --animate-topBurgerIconRe: topBurgerIconRe 0.3s ease-in-out 0s 1 reverse forwards;
   --animate-middleBurgerIconRe: middleBurgerIconBarRe 0.5s ease-in 0s 1 reverse forwards;
   --animate-bottomBurgerIconRe: bottomBurgerIconBarRe 0.3s ease-in-out 0s 1 reverse forwards;
+
+  --animate-BarRight: barRight 0.3s ease-out 0s 1 normal forwards;
+  --animate-BarLeft: barLeft 0.3s ease-out 0s 1 normal forwards;
 }
 
 @media (prefers-color-scheme: dark) {

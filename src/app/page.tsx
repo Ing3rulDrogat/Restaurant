@@ -22,8 +22,7 @@ export default function Home() {
             </div>
             <div className="w-400 h-50 bg-amber-700 mb-50 "></div>
             <div className="w-400 h-50 bg-amber-700 mb-50"></div>
-            <div className="w-400 h-50 bg-amber-700"></div>
-            <div className="w-400 h-50 bg-amber-700"></div>
+            <div className="w-400 h-50 bg-amber-700 "></div>
           </div>
         </div>
       </div>

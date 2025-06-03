@@ -42,7 +42,9 @@ function Header() {
             <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
           </Link>
         </div>
-        <div className=" w-3/12 h-full"></div>
+        <div className=" w-3/12 h-full content-center">
+          <Link href={"/registration"}> Log In/Sign Up </Link>
+        </div>
       </div>
       {showSideBar == true ? (
         <div className=" w-full h-screen  sticky top-35 ">
