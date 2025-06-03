@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Logo from "../../public/Logo.png";
 import Link from "next/link";
+import { VscAccount, VscExclude } from "react-icons/vsc";
 
 function Header() {
   const [showSideBar, setshowSideBar] = useState(false);
@@ -25,14 +26,14 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop">
+      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop z-10">
         <div className="flex w-3/12 h-full items-center">
           <div className=" w-4/12 h-full content-center justify-items-center cursor-pointer" onClick={openSideBar}>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType0}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType1}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType2}`}></div>
           </div>
-          <Link href={"/menu"} className="hover:text-amber-500 transition-all">
+          <Link href={"/menu"} className="hover:text-amber-500 transition-all text-lg">
             Menu
           </Link>
         </div>
@@ -42,18 +43,22 @@ function Header() {
             <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
           </Link>
         </div>
-        <div className=" w-3/12 h-full content-center">
-          <Link href={"/registration"}> Log In/Sign Up </Link>
+        <div className=" w-3/12 h-full content-center  flex items-center">
+          <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
+            <VscAccount className="mx-3 text-2xl" />
+            Log In / Sign Up
+          </Link>
+          <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500"> Book a Table</button>
         </div>
       </div>
       {showSideBar == true ? (
-        <div className=" w-full h-screen  sticky top-35 ">
-          <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer animate-easeInLeft"></div>
+        <div className=" w-full h-screen fixed top-35  z-10">
+          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeInLeft"></div>
         </div>
       ) : (
-        <div className=" w-full h-screen  sticky top-35">
+        <div className=" w-full h-screen fixed top-35 z-10">
           {/* <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeInLeft" style={{ animationDirection: "reverse" }}></div> */}
-          <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeOutLeft"></div>
+          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeOutLeft"></div>
         </div>
       )}
     </>
