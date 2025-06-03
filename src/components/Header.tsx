@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Logo from "../../public/Logo.png";
 import Link from "next/link";
+import { VscAccount, VscExclude } from "react-icons/vsc";
 
 function Header() {
   const [showSideBar, setshowSideBar] = useState(false);
@@ -32,7 +33,7 @@ function Header() {
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType1}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType2}`}></div>
           </div>
-          <Link href={"/menu"} className="hover:text-amber-500 transition-all">
+          <Link href={"/menu"} className="hover:text-amber-500 transition-all text-lg">
             Menu
           </Link>
         </div>
@@ -42,8 +43,12 @@ function Header() {
             <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
           </Link>
         </div>
-        <div className=" w-3/12 h-full content-center">
-          <Link href={"/registration"}> Log In/Sign Up </Link>
+        <div className=" w-3/12 h-full content-center  flex items-center">
+          <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
+            <VscAccount className="mx-3 text-2xl" />
+            Log In / Sign Up
+          </Link>
+          <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500"> Book a Table</button>
         </div>
       </div>
       {showSideBar == true ? (

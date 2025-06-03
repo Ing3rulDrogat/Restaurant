@@ -115,17 +115,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --animate-easeInLeft: easeInLeft 0.5s ease-in-out 0s 1 normal forwards;
-  --animate-easeOutLeft: easeOutLeft 0.5s ease-in-out 0s 1 normal forwards;
+  --animate-easeInLeft: easeInLeft 0.3s ease-in-out 0s 1 normal forwards;
+  --animate-easeOutLeft: easeOutLeft 0.3s ease-in-out 0s 1 normal forwards;
   --animate-easeInTop: easeInTop 0.5s ease-in-out 0s 1 normal forwards;
 
-  --animate-topBurgerIcon: topBurgerIcon 0.3s ease-in-out 0s 1 normal forwards;
+  --animate-topBurgerIcon: topBurgerIcon 0.2s ease-in-out 0s 1 normal forwards;
   --animate-middleBurgerIcon: middleBurgerIconBar 0.1s ease-in 0s 1 normal forwards;
-  --animate-bottomBurgerIcon: bottomBurgerIconBar 0.3s ease-in-out 0s 1 normal forwards;
+  --animate-bottomBurgerIcon: bottomBurgerIconBar 0.2s ease-in-out 0s 1 normal forwards;
 
-  --animate-topBurgerIconRe: topBurgerIconRe 0.3s ease-in-out 0s 1 reverse forwards;
-  --animate-middleBurgerIconRe: middleBurgerIconBarRe 0.5s ease-in 0s 1 reverse forwards;
-  --animate-bottomBurgerIconRe: bottomBurgerIconBarRe 0.3s ease-in-out 0s 1 reverse forwards;
+  --animate-topBurgerIconRe: topBurgerIconRe 0.2s ease-in-out 0s 1 reverse forwards;
+  --animate-middleBurgerIconRe: middleBurgerIconBarRe 0.3s ease-in 0s 1 reverse forwards;
+  --animate-bottomBurgerIconRe: bottomBurgerIconBarRe 0.2s ease-in-out 0s 1 reverse forwards;
 
   --animate-BarRight: barRight 0.3s ease-out 0s 1 normal forwards;
   --animate-BarLeft: barLeft 0.3s ease-out 0s 1 normal forwards;
