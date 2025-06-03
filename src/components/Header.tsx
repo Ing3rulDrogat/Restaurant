@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop">
+      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop z-10">
         <div className="flex w-3/12 h-full items-center">
           <div className=" w-4/12 h-full content-center justify-items-center cursor-pointer" onClick={openSideBar}>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType0}`}></div>
@@ -47,11 +47,11 @@ function Header() {
         </div>
       </div>
       {showSideBar == true ? (
-        <div className=" w-full h-screen  sticky top-35 ">
+        <div className=" w-full h-screen fixed top-35  z-10">
           <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer animate-easeInLeft"></div>
         </div>
       ) : (
-        <div className=" w-full h-screen  sticky top-35">
+        <div className=" w-full h-screen fixed top-35 z-10">
           {/* <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeInLeft" style={{ animationDirection: "reverse" }}></div> */}
           <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeOutLeft"></div>
         </div>
