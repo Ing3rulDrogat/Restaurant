@@ -53,12 +53,12 @@ function Header() {
       </div>
       {showSideBar == true ? (
         <div className=" w-full h-screen fixed top-35  z-10">
-          <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer animate-easeInLeft"></div>
+          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeInLeft"></div>
         </div>
       ) : (
         <div className=" w-full h-screen fixed top-35 z-10">
           {/* <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeInLeft" style={{ animationDirection: "reverse" }}></div> */}
-          <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeOutLeft"></div>
+          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeOutLeft"></div>
         </div>
       )}
     </>
