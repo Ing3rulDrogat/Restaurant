@@ -28,6 +28,8 @@ function LogIn() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log("Supabase Anon Key:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     const { name, value } = e.target;
     if (name.includes("log")) {
       if (name.includes("Email")) {
