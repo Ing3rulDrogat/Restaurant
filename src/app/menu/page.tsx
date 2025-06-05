@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import React from "react";
 
-function page() {
-  return <div className="w-full h-full bg-amber-200"> </div>;
+function Menu() {
+  return <div> Menu </div>;
 }
 
-export default page;
+export default Menu;

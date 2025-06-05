@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../public/Logo.png";
 import Link from "next/link";
 import { VscAccount, VscExclude } from "react-icons/vsc";
@@ -15,12 +15,10 @@ function Header() {
   const [userData, setuserData] = useState<UserData>({
     email: "",
     name: "",
-    phoneNumber: "",
   });
   type UserData = {
     email: string;
     name: string;
-    phoneNumber: string;
   };
 
   const getUser = async () => {
@@ -35,10 +33,10 @@ function Header() {
       userData.name == userdata?.user_metadata.display_name;
     }
   };
-
-  window.onload = () => {
+  useEffect(() => {
     getUser();
-  };
+  }, []);
+
   const openSideBar = () => {
     console.log("Works so far");
     setshowSideBar(!showSideBar);
@@ -52,9 +50,12 @@ function Header() {
       setanimationType2("animate-bottomBurgerIcon");
     }
   };
+
+  const openAccountMenu = () => {};
+
   return (
     <>
-      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop z-10 ">
+      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex opacity-0 justify-between items-center animate-easeInTop  z-10 ">
         <div className="flex w-3/12 h-full items-center">
           <div className=" w-4/12 h-full content-center justify-items-center cursor-pointer" onClick={openSideBar}>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType0}`}></div>
@@ -71,7 +72,7 @@ function Header() {
             <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
           </Link>
         </div>
-        <div className=" w-3/12 h-full content-center  flex items-center">
+        <div className=" w-3/12 h-full content-center  flex items-center ">
           {isUserSignedIn == false ? (
             <>
               <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
@@ -81,15 +82,19 @@ function Header() {
             </>
           ) : (
             <>
-              <div className="flex ">
-                <VscAccount className="mx-3 text-2xl" />
-                <p>Hello,</p>
-              </div>
+              <Link href={"/account"}>
+                <div className="flex cursor-pointer items-center" onClick={openAccountMenu}>
+                  <VscAccount className="mx-3 text-4xl" />
+                  <p className="text-lg">Hello, </p> {userData.name}
+                </div>
+              </Link>
             </>
           )}
-          <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all">
-            Book a Table
-          </button>
+          <Link href={"/book-a-table"}>
+            <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all">
+              Book a Table
+            </button>
+          </Link>
         </div>
       </div>
       {showSideBar == true ? (
@@ -103,20 +108,30 @@ function Header() {
               </Link>
             </div>
             <div className="w-11/12">
-              <Link href={"/"}>
+              <Link href={"/book-a-table"}>
                 <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
                   {" "}
                   Book Table
                 </button>
               </Link>
             </div>
-            <div className="w-11/12">
-              <Link href={"/"}>
-                <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
-                  Log In / Sign Up
-                </button>
-              </Link>
-            </div>
+            {isUserSignedIn == false ? (
+              <div className="w-11/12">
+                <Link href={"/"}>
+                  <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
+                    Log In / Sign Up
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <div className="w-11/12">
+                <Link href={"/account"}>
+                  <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
+                    Account
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       ) : (
