@@ -18,5 +18,6 @@ export const signUpUser = async (email: string, password: string) => {
       email: email,
       password: password,
     });
+    return error;
   } catch (error) {}
 };

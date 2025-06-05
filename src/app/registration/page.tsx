@@ -9,11 +9,16 @@ import { FaUserPlus } from "react-icons/fa";
 function LogIn() {
   const [animation, setanimation] = useState("");
 
-  const [logInData, setlogInData] = useState<LogInDataType>({
+  const [logInData, setlogInData] = useState<DataType>({
     email: "",
     password: "",
   });
-  type LogInDataType = {
+  const [signUpData, setsignUpData] = useState<DataType>({
+    email: "",
+    password: "",
+  });
+
+  type DataType = {
     email: string;
     password: string;
   };
@@ -35,13 +40,23 @@ function LogIn() {
         logInData.password = value;
       }
     } else {
-      //For sign up
+      if (name.includes("Email")) {
+        signUpData.email = value;
+      } else {
+        signUpData.password = value;
+      }
     }
   };
 
-  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
+  const logIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     logInUser(logInData.email, logInData.password);
+  };
+
+  const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const returnInfo = await signUpUser(signUpData.email, signUpData.password);
+    console.log(returnInfo);
   };
 
   return (
@@ -93,15 +108,27 @@ function LogIn() {
           </div>
         ) : (
           <div className="w-2/3 h-2/3 my-10">
-            {/* Sign-Up */}
-            <div className="flex flex-col items-center">
-              <input type="Email" placeholder="Email Address" className="mb-4 p-2 border border-black rounded text-black placeholder-black" />
-              <input type="phone number" placeholder="Phone Number" className="mb-4 p-2 border border-black rounded text-black placeholder-black" />
-              <input type="password" placeholder="Password" className="mb-4 p-2 border border-black rounded text-black placeholder-black" />
-              <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600">
-                Sign Up <FaUserPlus className="mx-2  text-1xl" />
-              </button>
-            </div>
+            <form onSubmit={(e) => signUp(e)}>
+              <div className="flex flex-col items-center">
+                <input
+                  type="Email"
+                  placeholder="Email Address"
+                  name="signUpEmail"
+                  onChange={(e) => handleChange(e)}
+                  className="mb-4 p-2 border border-black rounded text-black placeholder-black"
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="signUpPassword"
+                  onChange={(e) => handleChange(e)}
+                  className="mb-4 p-2 border border-black rounded text-black placeholder-black"
+                />
+                <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600">
+                  Sign Up <FaUserPlus className="mx-2  text-1xl" />
+                </button>
+              </div>
+            </form>
           </div>
         )}
       </div>
