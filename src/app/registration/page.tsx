@@ -1,10 +1,9 @@
 "use client";
-import Header from "@/components/Header";
-import { Hash } from "crypto";
 import React, { useState } from "react";
+import { logInUser } from "@/actions/registration.action";
+import { signUpUser } from "@/actions/registration.action";
 
 import { CiLogin } from "react-icons/ci";
-
 import { FaUserPlus } from "react-icons/fa";
 
 function LogIn() {
@@ -28,8 +27,6 @@ function LogIn() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-    console.log("Supabase Anon Key:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     const { name, value } = e.target;
     if (name.includes("log")) {
       if (name.includes("Email")) {
@@ -41,9 +38,10 @@ function LogIn() {
       //For sign up
     }
   };
-  const logIn = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(logInData);
+    logInUser(logInData.email, logInData.password);
   };
 
   return (
@@ -67,7 +65,12 @@ function LogIn() {
           <div className="w-2/3 h-2/3 my-10">
             {/* Log-In */}
             <div className="">
-              <form onSubmit={(e) => logIn(e)} className="flex flex-col items-center">
+              <form
+                onSubmit={(e) => {
+                  logIn(e);
+                }}
+                className="flex flex-col items-center"
+              >
                 <input
                   type="email"
                   placeholder="Email Address"
