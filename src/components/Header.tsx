@@ -3,6 +3,7 @@ import { useState } from "react";
 import Logo from "../../public/Logo.png";
 import Link from "next/link";
 import { VscAccount, VscExclude } from "react-icons/vsc";
+import { getCurrentUser } from "@/actions/user.actions";
 
 function Header() {
   const [showSideBar, setshowSideBar] = useState(false);
@@ -10,6 +11,34 @@ function Header() {
   const [animationType1, setanimationType1] = useState("");
   const [animationType2, setanimationType2] = useState("");
 
+  const [isUserSignedIn, setisUserSignedIn] = useState(false);
+  const [userData, setuserData] = useState<UserData>({
+    email: "",
+    name: "",
+    phoneNumber: "",
+  });
+  type UserData = {
+    email: string;
+    name: string;
+    phoneNumber: string;
+  };
+
+  const getUser = async () => {
+    const userdata = await getCurrentUser();
+    if (userdata === null) {
+      console.log("User not logged in");
+      setisUserSignedIn(false);
+    } else {
+      console.log("User logged in " + userdata?.email);
+      setisUserSignedIn(true);
+      userData.email == userdata?.email;
+      userData.name == userdata?.user_metadata.display_name;
+    }
+  };
+
+  window.onload = () => {
+    getUser();
+  };
   const openSideBar = () => {
     console.log("Works so far");
     setshowSideBar(!showSideBar);
@@ -23,7 +52,6 @@ function Header() {
       setanimationType2("animate-bottomBurgerIcon");
     }
   };
-
   return (
     <>
       <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex justify-between items-center animate-easeInTop z-10 ">
@@ -44,10 +72,21 @@ function Header() {
           </Link>
         </div>
         <div className=" w-3/12 h-full content-center  flex items-center">
-          <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
-            <VscAccount className="mx-3 text-2xl" />
-            Log In / Sign Up
-          </Link>
+          {isUserSignedIn == false ? (
+            <>
+              <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
+                <VscAccount className="mx-3 text-2xl" />
+                Log In / Sign Up
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="flex ">
+                <VscAccount className="mx-3 text-2xl" />
+                <p>Hello,</p>
+              </div>
+            </>
+          )}
           <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all">
             Book a Table
           </button>

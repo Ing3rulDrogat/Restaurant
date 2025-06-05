@@ -1,26 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { logInUser } from "@/actions/registration.action";
 import { signUpUser } from "@/actions/registration.action";
 
 import { CiLogin } from "react-icons/ci";
 import { FaUserPlus } from "react-icons/fa";
+import { ErrorType } from "next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay";
 
 function LogIn() {
+  //EXPAND ON THE ERROR SYSTEM. IN THE SIGN UP, IF EVERYTHING IS EMPTY ERROR IS "ANONYMOUS SIGN-INS ARE DISABLED" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   const [animation, setanimation] = useState("");
+  const [errorOccuredLogIn, seterrorOccuredLogIn] = useState<unknown>(null);
+  const [errorOccuredSignUp, seterrorOccuredSignUp] = useState<unknown>(null);
 
   const [logInData, setlogInData] = useState<DataType>({
     email: "",
     password: "",
+    firstName: "",
   });
   const [signUpData, setsignUpData] = useState<DataType>({
     email: "",
     password: "",
+    firstName: "",
   });
 
   type DataType = {
     email: string;
     password: string;
+    firstName: string;
   };
 
   const animateBar = () => {
@@ -42,21 +49,24 @@ function LogIn() {
     } else {
       if (name.includes("Email")) {
         signUpData.email = value;
-      } else {
+      } else if (name.includes("Password")) {
         signUpData.password = value;
+      } else {
+        signUpData.firstName = value;
       }
     }
   };
 
-  const logIn = (e: React.FormEvent<HTMLFormElement>) => {
+  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    logInUser(logInData.email, logInData.password);
+    const error = await logInUser(logInData.email, logInData.password);
+    seterrorOccuredLogIn(error);
   };
 
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const returnInfo = await signUpUser(signUpData.email, signUpData.password);
-    console.log(returnInfo);
+    const error = await signUpUser(signUpData.email, signUpData.password, signUpData.firstName);
+    seterrorOccuredSignUp(error);
   };
 
   return (
@@ -100,6 +110,7 @@ function LogIn() {
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
+                {errorOccuredLogIn ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredLogIn)}</p> : <></>}
                 <button className="flex items-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600">
                   Log In <CiLogin className="mx-2  text-2xl" />
                 </button>
@@ -110,6 +121,13 @@ function LogIn() {
           <div className="w-2/3 h-2/3 my-10">
             <form onSubmit={(e) => signUp(e)}>
               <div className="flex flex-col items-center">
+                <input
+                  type="Input"
+                  placeholder="FirstName"
+                  name="signUpFirstName"
+                  onChange={(e) => handleChange(e)}
+                  className="mb-4 p-2 border border-black rounded text-black placeholder-black"
+                />
                 <input
                   type="Email"
                   placeholder="Email Address"
@@ -124,6 +142,8 @@ function LogIn() {
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
+                {errorOccuredSignUp ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredSignUp)}</p> : <></>}
+
                 <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600">
                   Sign Up <FaUserPlus className="mx-2  text-1xl" />
                 </button>

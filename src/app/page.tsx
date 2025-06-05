@@ -8,12 +8,8 @@ const galadaFont = Galada({
   weight: "400",
 });
 export default function Home() {
-  const getUser = async () => {
-    const temp = getCurrentUser();
-  };
-
   return (
-    <div className="w-full h-full relative cursor-pointer">
+    <div className="w-full h-full relative">
       <Header />
       <div className="bg-[url('/TempBG.png')]  bg-fixed  bg-repeat bg-top bg-contain">
         <div className="backdrop-brightness-50 flex flex-col">
