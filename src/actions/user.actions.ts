@@ -1,5 +1,6 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export const getCurrentUser = async () => {
   const supabase = await createClient();
@@ -17,4 +18,5 @@ export const logUserOut = async () => {
   try {
     const { error } = await supabase.auth.signOut();
   } catch (error) {}
+  redirect("/");
 };

@@ -55,7 +55,7 @@ function Header() {
 
   return (
     <>
-      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex opacity-0 justify-between items-center animate-easeInTop  z-10 ">
+      <div className="fixed top-0 w-full h-35 bg-gradient-to-t from-opacity to-20% to-black/80 flex opacity-0 justify-between items-center animate-easeInTop z-10 ">
         <div className="flex w-3/12 h-full items-center">
           <div className=" w-4/12 h-full content-center justify-items-center cursor-pointer" onClick={openSideBar}>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType0}`}></div>

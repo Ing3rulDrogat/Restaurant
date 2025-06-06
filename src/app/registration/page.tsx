@@ -111,7 +111,7 @@ function LogIn() {
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
                 {errorOccuredLogIn ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredLogIn)}</p> : <></>}
-                <button className="flex items-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600">
+                <button className="flex items-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all">
                   Log In <CiLogin className="mx-2  text-2xl" />
                 </button>
               </form>
@@ -144,7 +144,7 @@ function LogIn() {
                 />
                 {errorOccuredSignUp ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredSignUp)}</p> : <></>}
 
-                <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600">
+                <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all">
                   Sign Up <FaUserPlus className="mx-2  text-1xl" />
                 </button>
               </div>
