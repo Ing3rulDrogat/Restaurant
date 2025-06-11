@@ -1,11 +1,12 @@
 "use client";
 import React, { ReactNode, useState } from "react";
-import { logInUser } from "@/actions/registration.action";
+import { logInUser, logInWithGoogle } from "@/actions/registration.action";
 import { signUpUser } from "@/actions/registration.action";
 
 import { CiLogin } from "react-icons/ci";
 import { FaUserPlus } from "react-icons/fa";
 import { ErrorType } from "next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay";
+import Link from "next/link";
 
 function LogIn() {
   //EXPAND ON THE ERROR SYSTEM. IN THE SIGN UP, IF EVERYTHING IS EMPTY ERROR IS "ANONYMOUS SIGN-INS ARE DISABLED" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -63,6 +64,11 @@ function LogIn() {
     seterrorOccuredLogIn(error);
   };
 
+  const logInGoogle = async () => {
+    const error = await logInWithGoogle();
+    seterrorOccuredLogIn(error);
+  };
+
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const error = await signUpUser(signUpData.email, signUpData.password, signUpData.firstName);
@@ -87,35 +93,44 @@ function LogIn() {
           <div></div>
         </div>
         {animation !== "animate-BarRight" ? (
-          <div className="w-2/3 h-2/3 my-10">
+          <div className=" w-2/3 h-2/3 my-10 pt-5">
             {/* Log-In */}
-            <div className="">
-              <form
-                onSubmit={(e) => {
-                  logIn(e);
-                }}
-                className="flex flex-col items-center"
-              >
+            <form
+              onSubmit={(e) => {
+                logIn(e);
+              }}
+              className="flex flex-col items-center"
+            >
+              <div className="w-1/2 h-full flex flex-col">
+                <h1 className="text-2xl text-black">Email</h1>
                 <input
                   type="email"
-                  placeholder="Email Address"
                   name="logInEmail"
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
+                <h1 className="text-2xl text-black">Password</h1>
+
                 <input
                   type="password"
-                  placeholder="Password"
                   name="logInPassword"
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
-                {errorOccuredLogIn ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredLogIn)}</p> : <></>}
-                <button className="flex items-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all">
+                {errorOccuredLogIn ? <p className="text-red-600 text-lg font-bold">Error: {JSON.stringify(errorOccuredLogIn)}</p> : <></>}
+                <Link href={"/forgot-password"}>
+                  <p className=" underline text-blue-500"> Forgot Password?</p>
+                </Link>
+                <button className="flex items-center justify-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all my-5">
                   Log In <CiLogin className="mx-2  text-2xl" />
                 </button>
-              </form>
-            </div>
+              </div>
+            </form>
+            <form onSubmit={logInWithGoogle}>
+              <button type="submit" className="flex items-center justify-center text-gray-700 border-gray-500 border-1 rounded-4xl p-3 cursor-pointer">
+                Log in with Google <CiLogin className="mx-2  text-2xl" />
+              </button>
+            </form>
           </div>
         ) : (
           <div className="w-2/3 h-2/3 my-10">

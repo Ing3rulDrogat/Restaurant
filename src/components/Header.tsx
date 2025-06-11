@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import Logo from "../../public/Logo.png";
 import Link from "next/link";
-import { VscAccount, VscExclude } from "react-icons/vsc";
+import { VscAccount } from "react-icons/vsc";
 import { getCurrentUser } from "@/actions/user.actions";
+import { createClient } from "@/utils/supabase/server";
 
 function Header() {
   const [showSideBar, setshowSideBar] = useState(false);
@@ -29,13 +30,15 @@ function Header() {
     } else {
       console.log("User logged in " + userdata?.email);
       setisUserSignedIn(true);
-      userData.email == userdata?.email;
-      userData.name == userdata?.user_metadata.display_name;
+      userData.email = userdata?.email ?? "";
+      userData.name = userdata?.user_metadata.display_name ?? "";
     }
   };
   useEffect(() => {
     getUser();
   }, []);
+
+  useEffect(() => {}, []);
 
   const openSideBar = () => {
     console.log("Works so far");
@@ -62,44 +65,44 @@ function Header() {
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType1}`}></div>
             <div className={`bg-white w-12 h-1 rounded-4xl my-2 ${animationType2}`}></div>
           </div>
-          <Link href={"/menu"} className="hover:text-amber-500 transition-all text-lg">
+          <Link href={"/menu"} className="hover:text-amber-500 transition-all text-lg hidden md:flex">
             Menu
           </Link>
         </div>
 
-        <div className=" w-2/12 h-full flex items-center justify-center">
+        <div className="flex-[2] md:flex-none w-2/12 h-full flex items-center justify-center">
           <Link href={"/"}>
-            <img src={Logo.src} className="w-auto h-full mb-2 cursor-pointer"></img>
+            <img src={Logo.src} className="md:w-auto h-full mb-2 cursor-pointer"></img>
           </Link>
         </div>
-        <div className=" w-3/12 h-full content-center  flex items-center ">
+        <div className=" w-3/12 h-full content-center  flex items-center justify-center">
           {isUserSignedIn == false ? (
             <>
               <Link href={"/registration"} className="text-lg hover:text-amber-500 transition-all flex items-center">
-                <VscAccount className="mx-3 text-2xl" />
-                Log In / Sign Up
+                <VscAccount className="md:mx-3 md:text-2xl  text-4xl" />
+                <p className="hidden md:block">Log In / Sign Up</p>
               </Link>
             </>
           ) : (
             <>
               <Link href={"/account"}>
                 <div className="flex cursor-pointer items-center" onClick={openAccountMenu}>
-                  <VscAccount className="mx-3 text-4xl" />
-                  <p className="text-lg">Hello, </p> {userData.name}
+                  <VscAccount className="md:mx-3 text-4xl" />
+                  <p className="text-lg hidden md:block">Hello, </p> {userData.name}
                 </div>
               </Link>
             </>
           )}
           <Link href={"/book-a-table"}>
-            <button className="mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all">
+            <button className="hidden md:block mx-10 px-8 py-3 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all">
               Book a Table
             </button>
           </Link>
         </div>
       </div>
       {showSideBar == true ? (
-        <div className=" w-full h-screen fixed top-35  z-10">
-          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeInLeft flex flex-col items-center">
+        <div className=" w-1/5 h-screen fixed top-35  z-10">
+          <div className="bg-black/70 border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-full h-11/12 cursor-pointer animate-easeInLeft flex flex-col items-center">
             <div className=" w-11/12">
               <Link href={"/menu"}>
                 <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
@@ -110,7 +113,6 @@ function Header() {
             <div className="w-11/12">
               <Link href={"/book-a-table"}>
                 <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
-                  {" "}
                   Book Table
                 </button>
               </Link>
@@ -135,9 +137,9 @@ function Header() {
           </div>
         </div>
       ) : (
-        <div className=" w-full h-screen fixed top-35 z-10">
+        <div className=" w-1/5 h-screen fixed top-35 z-10">
           {/* <div className="bg-red-300 w-1/4 h-11/12 cursor-pointer hidden animate-easeInLeft" style={{ animationDirection: "reverse" }}></div> */}
-          <div className="bg-black/70 hidden border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-1/5 h-11/12 cursor-pointer animate-easeOutLeft"></div>
+          <div className="bg-black/70 hidden border-r-2 border-t-2 rounded-r-2xl border-amber-500 w-full h-11/12 cursor-pointer animate-easeOutLeft"></div>
         </div>
       )}
     </>

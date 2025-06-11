@@ -1,16 +1,17 @@
 "use server";
-import { createClient } from "@/utils/supabase/server";
+import { createClient, supabaseBrowser } from "@/utils/supabase/server";
+import { createBrowserClient } from "@supabase/ssr";
 import { redirect } from "next/navigation";
 
 export const getCurrentUser = async () => {
   const supabase = await createClient();
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
 
-    return user;
-  } catch (error) {}
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  return user;
 };
 
 export const logUserOut = async () => {

@@ -39,3 +39,24 @@ export const signUpUser = async (email: string, password: string, firstName: str
     return err;
   }
 };
+
+export const logInWithGoogle = async () => {
+  const supabase = await createClient();
+  const authCallbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`;
+
+  let { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: authCallbackUrl,
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+    },
+  });
+
+  if (error) {
+    return error;
+  }
+  redirect(data?.url ?? "/");
+};
