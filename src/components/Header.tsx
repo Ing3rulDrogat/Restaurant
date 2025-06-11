@@ -30,8 +30,9 @@ function Header() {
     } else {
       console.log("User logged in " + userdata?.email);
       setisUserSignedIn(true);
+      console.log(userdata);
       userData.email = userdata?.email ?? "";
-      userData.name = userdata?.user_metadata.display_name ?? "";
+      userData.name = userdata?.user_metadata.full_name ?? userdata?.user_metadata.first_name ?? "";
     }
   };
   useEffect(() => {
@@ -119,7 +120,7 @@ function Header() {
             </div>
             {isUserSignedIn == false ? (
               <div className="w-11/12">
-                <Link href={"/"}>
+                <Link href={"/registration"}>
                   <button className=" px-20 py-5 my-2 w-full text-lg cursor-pointer border-1 border-amber-500/0 hover:border-amber-500/100 rounded-2xl transition-all">
                     Log In / Sign Up
                   </button>

@@ -58,14 +58,8 @@ function LogIn() {
     }
   };
 
-  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const logIn = async () => {
     const error = await logInUser(logInData.email, logInData.password);
-    seterrorOccuredLogIn(error);
-  };
-
-  const logInGoogle = async () => {
-    const error = await logInWithGoogle();
     seterrorOccuredLogIn(error);
   };
 
@@ -73,6 +67,10 @@ function LogIn() {
     e.preventDefault();
     const error = await signUpUser(signUpData.email, signUpData.password, signUpData.firstName);
     seterrorOccuredSignUp(error);
+
+    logInData.email = signUpData.email;
+    logInData.password = signUpData.password;
+    logIn();
   };
 
   return (
@@ -97,15 +95,16 @@ function LogIn() {
             {/* Log-In */}
             <form
               onSubmit={(e) => {
-                logIn(e);
+                logIn();
               }}
               className="flex flex-col items-center"
             >
-              <div className="w-1/2 h-full flex flex-col">
+              <div className="w-1/2 h-full flex flex-col ">
                 <h1 className="text-2xl text-black">Email</h1>
                 <input
-                  type="email"
+                  type="Email"
                   name="logInEmail"
+                  required
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
@@ -114,6 +113,7 @@ function LogIn() {
                 <input
                   type="password"
                   name="logInPassword"
+                  required
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
@@ -126,41 +126,51 @@ function LogIn() {
                 </button>
               </div>
             </form>
-            <form onSubmit={logInWithGoogle}>
-              <button type="submit" className="flex items-center justify-center text-gray-700 border-gray-500 border-1 rounded-4xl p-3 cursor-pointer">
+
+            <div className="justify-items-center">
+              <button
+                onClick={logInWithGoogle}
+                className="flex items-center justify-center text-gray-700 border-gray-500 border-1 rounded-4xl w-1/2 py-2 cursor-pointer"
+              >
                 Log in with Google <CiLogin className="mx-2  text-2xl" />
               </button>
-            </form>
+            </div>
           </div>
         ) : (
           <div className="w-2/3 h-2/3 my-10">
-            <form onSubmit={(e) => signUp(e)}>
-              <div className="flex flex-col items-center">
+            <form onSubmit={(e) => signUp(e)} className="flex flex-col items-center">
+              <div className="flex flex-col w-1/2 h-full">
+                <h1 className="text-2xl text-black">First Name</h1>
                 <input
                   type="Input"
-                  placeholder="FirstName"
+                  placeholder=""
                   name="signUpFirstName"
+                  required
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
+                <h1 className="text-2xl text-black">Email</h1>
+
                 <input
                   type="Email"
-                  placeholder="Email Address"
                   name="signUpEmail"
+                  required
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
+                <h1 className="text-2xl text-black">Password</h1>
+
                 <input
                   type="password"
-                  placeholder="Password"
                   name="signUpPassword"
+                  required
                   onChange={(e) => handleChange(e)}
                   className="mb-4 p-2 border border-black rounded text-black placeholder-black"
                 />
                 {errorOccuredSignUp ? <p className="text-red-500 font-bold">Error: {JSON.stringify(errorOccuredSignUp)}</p> : <></>}
 
-                <button className="flex items-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all">
-                  Sign Up <FaUserPlus className="mx-2  text-1xl" />
+                <button className="flex items-center justify-center bg-amber-500 text-black px-2 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all">
+                  Sign Up <FaUserPlus className="mx-2  text-2xl" />
                 </button>
               </div>
             </form>

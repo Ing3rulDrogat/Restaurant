@@ -1,5 +1,5 @@
 "use server";
-import { createClient, supabaseBrowser } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { createBrowserClient } from "@supabase/ssr";
 import { redirect } from "next/navigation";
 
@@ -20,4 +20,9 @@ export const logUserOut = async () => {
     const { error } = await supabase.auth.signOut();
   } catch (error) {}
   redirect("/");
+};
+
+export const resetUserPassword = async (email: string) => {
+  const supabase = await createClient();
+  let { data, error } = await supabase.auth.resetPasswordForEmail(email);
 };
