@@ -58,7 +58,8 @@ function LogIn() {
     }
   };
 
-  const logIn = async () => {
+  const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const error = await logInUser(logInData.email, logInData.password);
     seterrorOccuredLogIn(error);
   };
@@ -68,9 +69,9 @@ function LogIn() {
     const error = await signUpUser(signUpData.email, signUpData.password, signUpData.firstName);
     seterrorOccuredSignUp(error);
 
-    logInData.email = signUpData.email;
-    logInData.password = signUpData.password;
-    logIn();
+    // logInData.email = signUpData.email;
+    // logInData.password = signUpData.password;
+    // logIn();
   };
 
   return (
@@ -95,7 +96,7 @@ function LogIn() {
             {/* Log-In */}
             <form
               onSubmit={(e) => {
-                logIn();
+                logIn(e);
               }}
               className="flex flex-col items-center"
             >
@@ -121,7 +122,10 @@ function LogIn() {
                 <Link href={"/forgot-password"}>
                   <p className=" underline text-blue-500"> Forgot Password?</p>
                 </Link>
-                <button className="flex items-center justify-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all my-5">
+                <button
+                  type="submit"
+                  className="flex items-center justify-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all my-5"
+                >
                   Log In <CiLogin className="mx-2  text-2xl" />
                 </button>
               </div>

@@ -12,6 +12,7 @@ export const logInUser = async (email: string, password: string) => {
     });
 
     if (error) throw error.message;
+
     loggedIn = true;
   } catch (err) {
     loggedIn = false;
