@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen relative z-20">
       <Header />
-      <div className="bg-[url('/TempBG.png')]  bg-fixed  bg-repeat bg-top bg-contain min-h-screen z-0">
+      <div className="bg-[url('/Pattern.webp')]  bg-fixed  bg-repeat bg-top bg-contain min-h-screen z-0">
         <div className="backdrop-brightness-50 flex flex-col min-h-screen z-0">
           <div className=" justify-items-center min-h-screen">
             <div className="bg-[url('/BG.png')] bg-center bg-no-repeat w-full h-screen bg-amber-700 mb-40 top-0">

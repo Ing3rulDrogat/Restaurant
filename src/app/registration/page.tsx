@@ -1,11 +1,12 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import { logInUser, logInWithGoogle } from "@/actions/registration.action";
 import { signUpUser } from "@/actions/registration.action";
 
 import { CiLogin } from "react-icons/ci";
 import { FaUserPlus } from "react-icons/fa";
-import { ErrorType } from "next/dist/client/components/react-dev-overlay/pages/pages-dev-overlay";
+import { FcGoogle } from "react-icons/fc";
+
 import Link from "next/link";
 
 function LogIn() {
@@ -75,19 +76,19 @@ function LogIn() {
   };
 
   return (
-    <div className="w-screen h-screen content-center justify-items-center bg-gradient-to-t from-black from-5% to-gray-600">
-      <div className="w-2/5  h-2/3 bg-white/55 flex flex-col items-center rounded-3xl shadow-lg shadow-cyan-700/10 ">
+    <div className="w-screen h-screen content-center justify-items-center bg-[url('/Pattern.webp')]">
+      <div className="w-2/5  h-2/3 bg-white/95 flex flex-col items-center rounded-3xl shadow-lg shadow-cyan-700/10 ">
         <div className="w-full flex flex-col  items-center">
           <ul className="flex justify-center">
-            <li className="flex mx-3 text-3xl  cursor-pointer" onClick={animateBar}>
+            <li className="flex mx-5 text-3xl  cursor-pointer text-black" onClick={animateBar}>
               Log In
             </li>
-            <li className="mx-3 text-3xl cursor-pointer " onClick={animateBar}>
+            <li className="mx-5 text-3xl cursor-pointer text-black" onClick={animateBar}>
               Sign Up
             </li>
           </ul>
           <div className="bg-black w-1/2  h-1  overflow-hidden">
-            <div className={`bg-cyan-500 w-1/2 h-full ${animation}`}></div>
+            <div className={`bg-amber-500 w-1/2 h-full ${animation}`}></div>
           </div>
           <div></div>
         </div>
@@ -124,7 +125,7 @@ function LogIn() {
                 </Link>
                 <button
                   type="submit"
-                  className="flex items-center justify-center bg-amber-500 text-black px-4 py-2 rounded hover:bg-cyan-600 cursor-pointer transition-all my-5"
+                  className="flex items-center justify-center bg-amber-500 text-black px-4 py-2 rounded hover:shadow-lg cursor-pointer transition-all my-5"
                 >
                   Log In <CiLogin className="mx-2  text-2xl" />
                 </button>
@@ -134,9 +135,9 @@ function LogIn() {
             <div className="justify-items-center">
               <button
                 onClick={logInWithGoogle}
-                className="flex items-center justify-center text-gray-700 border-gray-500 border-1 rounded-4xl w-1/2 py-2 cursor-pointer"
+                className="flex items-center justify-center text-gray-700 border-gray-500 border-1 rounded-4xl w-1/2 py-2 hover:shadow-lg transition-all cursor-pointer"
               >
-                Log in with Google <CiLogin className="mx-2  text-2xl" />
+                Log in with Google <FcGoogle className="mx-2  text-2xl" />
               </button>
             </div>
           </div>
