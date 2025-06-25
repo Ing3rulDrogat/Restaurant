@@ -24,14 +24,14 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="w-full min-h-[60vh] bg-[#7a5454] mb-40 justify-items-center">
-              <h1 className="text-3xl py-5"> YOUR LOCAL STEAKHOUSE</h1>
-              <p className="w-1/2 h-1/2 text-2xl">
+            <div className="w-full min-h-[60vh] bg-rose-50 bg- mb-40 justify-items-center">
+              <h1 className="text-3xl py-5 text-black"> YOUR LOCAL STEAKHOUSE</h1>
+              <p className="w-1/2 h-1/2 text-2xl text-black">
                 Born from a passion for premium cuts and bold flavors, our restaurant is dedicated to the art of grilling. We specialize in hand-selected
                 steaks, locally sourced ingredients, and open-flame cooking that brings out the natural richness of every dish. From the smoky aroma that fills
                 the air to the warm, rustic ambiance of our dining room, every detail is designed to make you feel at home.
               </p>
-              <h2 className="text-3xl py-5">Join us, and experience what happens when fire meets flavor.</h2>
+              <h2 className="text-3xl py-5 text-black">Join us, and experience what happens when fire meets flavor.</h2>
               <Link href={"/book-a-table"}>
                 <button className="mx-5 px-8 py-3 w-50 cursor-pointer rounded-2xl border-2  hover:border-amber-500 hover:text-amber-500 transition-all z-20">
                   Book a Table
